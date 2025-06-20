@@ -31,7 +31,7 @@ export default async function Home() {
             </div>
             <footer>
               <input></input>
-              <Button onclick={() => console.log('заказать')}>заказать</Button>
+              <Button >заказать</Button>
             </footer>
           </div>
         </div>
