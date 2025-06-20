@@ -1,0 +1,26 @@
+@use '../../assets/scss/colors.scss';
+
+.button {
+
+  background-color: colors.$black2;
+  // width: 100%;
+  // width: fill;
+  padding: 13px;
+
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 100%;
+
+  color: colors.$white2;
+  border-radius: 10px;
+
+  outline: none;
+  border: none;
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+  :focus:not(:-moz-focusring) {
+    outline: none;
+  }
+}

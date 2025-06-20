@@ -1,5 +1,56 @@
-.page {
-  --gray-rgb: 0, 0, 0;
+@use '../assets/scss/colors.scss';
+
+.pageWrapper {
+  background-color: colors.$black2;
+
+  .page {
+    margin: 55px 12.96875% 0 11.9270833%;
+
+    .header {
+      background-color: colors.$gray-light;
+      margin: 55px 249px 229px
+    }
+
+    .addedProducts {
+      background-color: colors.$white;
+      color: colors.$black;
+      width: 708;
+      height: 230;
+      border-radius: 15px;
+
+      font-family: Inter;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 100%;
+
+      margin: 0 auto;
+
+      .products {
+        margin: 10px 13px;
+      }
+
+    }
+  
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+  
+      gap: 42px 35px;
+  
+      // margin: 0 479px 0 458px;
+      margin: 0 auto;
+  
+      @media (min-height: 768px) and (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+}
+  /* --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
 
@@ -13,8 +64,8 @@
   min-height: 100svh;
   padding: 80px;
   gap: 64px;
-  font-family: var(--font-geist-sans);
-}
+  font-family: var(--font-geist-sans); */
+/* }
 
 @media (prefers-color-scheme: dark) {
   .page {
@@ -46,9 +97,9 @@
 
 .main li:not(:last-of-type) {
   margin-bottom: 8px;
-}
+} */
 
-.main code {
+/* .main code {
   font-family: inherit;
   background: var(--gray-alpha-100);
   padding: 2px 4px;
@@ -108,7 +159,7 @@ a.secondary {
   flex-shrink: 0;
 }
 
-/* Enable hover only on non-touch devices */
+Enable hover only on non-touch devices
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
     background: var(--button-primary-hover);
@@ -165,4 +216,4 @@ a.secondary {
   .logo {
     filter: invert();
   }
-}
+} */
