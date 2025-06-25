@@ -1,0 +1,58 @@
+@use '../../assets/scss/colors.scss';
+
+.cart {
+  background-color: colors.$white;
+  color: colors.$black;
+  width: 708;
+  // height: 230;
+  height: fit-content;
+  border-radius: 15px;
+
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 100%;
+
+  margin: 0 auto;
+  margin-top: 243px;
+
+
+  .container {
+    margin: 10px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .cartItems {
+
+    width: 75%;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    gap: 20px 10px;
+
+    font-size: 24px;
+    line-height: 100%;
+  
+  }
+
+
+  .phone {
+    // width: 401px;
+    // height: 68px;
+
+    border: none;
+    border-radius: 15px;
+    height: 68px;
+    background-color: colors.$black2;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 100%;
+    color: colors.$white2;
+
+    padding: 12px 16px 12px 16px;
+  }
+
+}
+

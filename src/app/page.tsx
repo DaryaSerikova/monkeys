@@ -1,40 +1,50 @@
-import Button from "@/components/button/button";
+'use client'
+
 import s from "./page.module.scss";
 import Card from "@/components/card/card";
-import { IProduct } from "@/components/card/card";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useEffect } from "react";
+import { fetchProducts } from "@/lib/slices/productSlice";
+import { fetchReviews } from "@/lib/slices/reviewSlice";
+import Review from "@/components/review/review";
+import Cart from "@/components/cart/cart";
 
 
 
-export default async function Home() {
+export default function Home() {
 
-  const response = await fetch('http://o-complex.com:1337/products?page=1&page_size=20', {
-    next: {revalidate: 300}
-  });
+  const { products } = useAppSelector(state => state.productReducer);
+  const { reviews } = useAppSelector(state => state.reviewReducer)
+  const dispatch = useAppDispatch();
 
-  const resObject = await response.json();
-  const products: IProduct[] = resObject?.items;
-  console.log('resObject: ', resObject)
-  console.log('products: ', products)
+  useEffect(() => {
+    dispatch(fetchProducts())
+    dispatch(fetchReviews())
+  }, [dispatch]);
 
   return (
     <div className={s.pageWrapper}>
       <div className={s.page}>
-        <header className={s.header}></header>
+
+        <header className={s.header}>
+          <h2 className={s.h2}>
+            тестовое задание
+          </h2>
+        </header>
+
         <div className={s.reviews}>
-
+          {reviews?.map((review) => 
+            <Review 
+              id={review.id} 
+              text={review?.text} 
+            />
+          )}
         </div>
-        <div className={s.addedProducts}>
-          <div className={s.products}>
-            <header>Добавленные товары</header>
-            <div className={s.products}>
 
-            </div>
-            <footer>
-              <input></input>
-              <Button >заказать</Button>
-            </footer>
-          </div>
-        </div>
+
+        <Cart />
+
+
         <div className={s.cards}>
           {products?.map((product) => 
             <Card 

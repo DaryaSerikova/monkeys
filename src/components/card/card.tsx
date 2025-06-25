@@ -4,30 +4,32 @@ import s from './card.module.scss';
 import Button from '../button/button';
 import { useState } from 'react';
 import Image from 'next/image';
+import { IProduct } from '@/shared/types/IProduct';
+import { useAppDispatch } from '@/lib/hooks';
+import { cartSlice } from '@/lib/slices/cartSlice';
 
-export interface IProduct {
-  description: string;
-  id: number;
-  image_url: string;
-  price: number;
-  title: string;
-}
 
-const Card = ({price, title, description, image_url, id}: IProduct) => {
-  // const isButton: boolean = true;
-  const isButton: boolean = false;
+const Card = (props: IProduct) => {
+
+  const {price, title, description, image_url, id} = props;
+  const dispatch = useAppDispatch();
+  const { addToCart, removeFromCart } = cartSlice.actions;
 
   const [amount, setAmount] = useState(0);
 
-  // useEffect(
-  //   setAmount
-  // , [amount])
 
-  const handleIncrement = () => setAmount(amount + 1);
+  const handleIncrement = () => {
+    console.log('amount: ', amount + 1)
+
+    dispatch(addToCart(props));
+    console.log(props)
+    setAmount(amount + 1);
+  }
 
   const handleDecrement = () => {
     if(amount > 0) {
-      setAmount(amount - 1)
+      dispatch(removeFromCart(props));
+      setAmount(amount - 1);
     } 
   }
 
@@ -58,8 +60,9 @@ const Card = ({price, title, description, image_url, id}: IProduct) => {
         <footer className={s.footer}>
           <div className={s.price}>цена: {price}₽</div>
           {
-            isButton 
-            ? <Button onclick={() => setAmount(1)}>купить</Button>
+            amount === 0 
+            // ? <Button onclick={() => setAmount(1)}>купить</Button>
+            ? <Button onclick={handleIncrement}>купить</Button>
             : <div className={s.counter}>
             <Button onclick={handleDecrement}>-</Button>
             <div className={s.amount}> {amount} </div>

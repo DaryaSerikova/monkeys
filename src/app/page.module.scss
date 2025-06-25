@@ -1,42 +1,54 @@
 @use '../assets/scss/colors.scss';
 
 .pageWrapper {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  min-height: 100vh !important;
+
   background-color: colors.$black2;
 
   .page {
-    margin: 55px 12.96875% 0 11.9270833%;
+    width: 100% !important;
+    min-height: 100vh !important;
+    // margin: 55px 12.96875% 0 11.9270833%;
+    padding: 55px 12.96875% 0 11.9270833%;
+    
+
+    box-sizing: border-box;
 
     .header {
       background-color: colors.$gray-light;
-      margin: 55px 249px 229px
-    }
-
-    .addedProducts {
-      background-color: colors.$white;
-      color: colors.$black;
-      width: 708;
-      height: 230;
+      height: 132px;
       border-radius: 15px;
 
       font-family: Inter;
       font-weight: 400;
-      font-size: 36px;
+      font-size: 96px;
       line-height: 100%;
 
-      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
 
-      .products {
-        margin: 10px 13px;
+      .h2 {
+
       }
+    }
+    .reviews {
+      display: flex;
+      flex-direction: row;
+      gap: 34px;
 
+      margin-top: 105px;
     }
   
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-  
       gap: 42px 35px;
-  
       // margin: 0 479px 0 458px;
       margin: 0 auto;
   
