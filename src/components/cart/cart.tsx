@@ -4,7 +4,7 @@ import s from './cart.module.scss';
 import { useAppSelector } from '@/lib/hooks';
 import { ICardItem } from '@/shared/types/ICartItem';
 import { InputMask } from '@react-input/mask';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../button/button';
 
 
@@ -16,6 +16,11 @@ const Cart = (props: Props) => {
   console.log("cart: ", cart);
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    const phoneLS = localStorage.getItem('phone');
+    if (phoneLS) setPhone(phoneLS);
+  }, []);
 
   const getItemsBackend = (arr: ICardItem[]) => arr?.map(
     (cartItem: ICardItem) => ({id: cartItem?.id, amount: cartItem?.amount}));
@@ -54,17 +59,26 @@ const Cart = (props: Props) => {
     const isAccess: boolean = checkPhone(phone);
     if (isAccess) {
       getInfoForBackend();
+      localStorage.removeItem('phone');
+      setPhone('');
       console.log('ЗАКАЗАНО!')
     } else {
       console.log('НЕ ЗАКАЗАНО')
     }
   }
 
+  const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value);
+    localStorage.setItem('phone', e.target.value);
+  }
 
   return (
     <article className={s.cart}>
       <div className={s.container}>
-        <header>Добавленные товары</header>
+        <header className={s.header}>
+          <p>Добавленные</p> 
+          <p>товары</p>
+        </header>
         
         <div className={s.cartItems}>
         {
@@ -76,12 +90,12 @@ const Cart = (props: Props) => {
         }
         </div>
 
-        <footer>
+        <footer className={s.footer}>
           <InputMask
             mask="+7 (___) ___ __-__"
             replacement={{ _: /\d/ }} // только цифры
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={handlePhone}
             placeholder="+7 (999) 999 99-99"
             className={s.phone}
 
