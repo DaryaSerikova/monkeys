@@ -25,19 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" style={{ margin: 0, padding: 0}}>
-      <body className={`${geistSans.variable} ${geistMono.variable}`} style={{
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100vw',
-  height: '100vh',
-  overflow: 'auto',
-  // overflow: 'hidden',
-  margin: 0,
-  padding: 0,
-  zIndex: 9999,
-  backgroundColor: 'red' // Для визуальной проверки
-}}>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
