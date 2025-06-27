@@ -1,3 +1,20 @@
+## Стэк
+Next.js
+Typascript
+Redux-toolkit
+SCSS, css-modules
+
+- визуал по фигме [https://www.figma.com/file/XIYVl8ICFkdl3HJZcc8o8B/тестовое?type=design&node-id=0%3A1&mode=design&t=6xUI2e3VtlUzDocD-1](https://www.figma.com/file/XIYVl8ICFkdl3HJZcc8o8B/%D1%82%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5?type=design&node-id=0%3A1&mode=design&t=6xUI2e3VtlUzDocD-1)
+- адаптирован под мобильные устройства и планшеты
+- наполнение контентом отзывов из html обернутого в json (использовала html-react-parser)
+наполнение контентом товары по апи
+- при нажатии на кнопку "купить", меняться на кнопки + и - (counter) и поле для ввода кол-ва товара, значение поля  1, кнопки меняют количество товара
+- при изменении кол-ва какого-либо из товаров меняется информация в корзине (над полем с телефоном)
+- введенный номер телефона должны сохраняться при перезагрузки страницы
+- маска в поле для телефона
+- при нажатии кнопки "заказать" идет проверка того что телефон полностью введен. Eсли нет, то выводится сообщение в консоль, что не полностью введен и выводится сообщение в консоль 'НЕ ЗАКАЗАНО'. Если все ок, то подготавливаются данные для отправки в json-формате и выводится сообщение в консоль 'ЗАКАЗАНО'
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
