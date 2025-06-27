@@ -28,7 +28,8 @@ export default function Home() {
 
         <header className={s.header}>
           <h2 className={s.h2}>
-            тестовое задание
+            <p>тестовое</p>
+            <p>задание</p>
           </h2>
         </header>
 

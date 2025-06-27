@@ -26,6 +26,9 @@ export const cartSlice = createSlice({
 
       console.log('state: ', JSON.parse(JSON.stringify(state.items?.[0])))
     },
+    addLSToCart: (state, action: PayloadAction<ICardItem[]> ) => {
+      state.items.push(action.payload);
+    },
     removeFromCart: (state, action: PayloadAction<IProduct>) => {
 
       state.items.map((item) => {

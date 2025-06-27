@@ -17,5 +17,10 @@
     font-weight: 400;
     font-size: 24px;
     color: colors.$black;
+
+    @media (max-width: 450px) {
+      margin: 23.5px 19px 23.5px 19px;
+
+    }
   }
 }

@@ -15,7 +15,7 @@ const Card = (props: IProduct) => {
   const dispatch = useAppDispatch();
   const { addToCart, removeFromCart } = cartSlice.actions;
 
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState<number>(0);
 
 
   const handleIncrement = () => {

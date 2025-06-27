@@ -1,11 +1,12 @@
 'use client';
 import React from 'react';
 import s from './cart.module.scss';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { ICardItem } from '@/shared/types/ICartItem';
 import { InputMask } from '@react-input/mask';
 import { useState, useEffect } from 'react';
 import Button from '../button/button';
+import { cartSlice } from '@/lib/slices/cartSlice';
 
 
 type Props = {}
@@ -13,14 +14,30 @@ type Props = {}
 const Cart = (props: Props) => {
 
   const cart = useAppSelector((state) => state.cartReducer);
-  console.log("cart: ", cart);
-  const [phone, setPhone] = useState('');
-  const [error, setError] = useState('');
+  // const dispatch = useAppDispatch();
+  // const { addLSToCart } = cartSlice.actions;
 
-  useEffect(() => {
-    const phoneLS = localStorage.getItem('phone');
-    if (phoneLS) setPhone(phoneLS);
-  }, []);
+  console.log("cart: ", cart);
+  const [phone, setPhone] = useState<string>('');
+  const [error, setError] = useState<string>('');
+
+  // useEffect(() => {
+  //   const phoneLS = localStorage.getItem('phone');
+  //   if (phoneLS) setPhone(phoneLS);
+  //   const cartLS = JSON.parse(`${localStorage.getItem('cart')}`);
+  //   console.log('cartLS: ', cartLS);
+
+  //   console.log('-------');
+  //   console.log('cartLS(local storage)', JSON.parse(`${cartLS}`));
+  //   console.log('cart (redux)', cart?.items)
+  //   if(cart?.items?.length === 0 && cartLS?.length !== 0) {
+  //     dispatch(addLSToCart(cartLS))
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   if(cart?.items?.[0] !== null) localStorage.setItem('cart', JSON.stringify(cart?.items))
+  // }, [cart]);
 
   const getItemsBackend = (arr: ICardItem[]) => arr?.map(
     (cartItem: ICardItem) => ({id: cartItem?.id, amount: cartItem?.amount}));
@@ -60,6 +77,7 @@ const Cart = (props: Props) => {
     if (isAccess) {
       getInfoForBackend();
       localStorage.removeItem('phone');
+      // localStorage.removeItem('cart');
       setPhone('');
       console.log('ЗАКАЗАНО!')
     } else {
@@ -85,7 +103,7 @@ const Cart = (props: Props) => {
           cart?.items?.map((cartItem: ICardItem) => <>
             <div className={s.item}>{cartItem?.title}</div>
             <div className={s.item}>x{cartItem?.amount}</div>
-            <div className={s.item}>{cartItem?.price}</div>
+            <div className={s.item}>{cartItem?.price}₽</div>
           </>)
         }
         </div>
