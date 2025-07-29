@@ -1,28 +1,23 @@
 'use client';
-import React from 'react';
-import s from './card.module.scss';
-import Button from '../button/button';
-import { useState } from 'react';
+import React, { useState }  from 'react';
 import Image from 'next/image';
+import Button from '../button/button';
+import { cartSlice } from '@/lib/slices/cartSlice';
 import { IProduct } from '@/shared/types/IProduct';
 import { useAppDispatch } from '@/lib/hooks';
-import { cartSlice } from '@/lib/slices/cartSlice';
+import s from './card.module.scss';
 
 
 const Card = (props: IProduct) => {
 
   const {price, title, description, image_url, id} = props;
-  const dispatch = useAppDispatch();
   const { addToCart, removeFromCart } = cartSlice.actions;
-
   const [amount, setAmount] = useState<number>(0);
+  const dispatch = useAppDispatch();
 
 
   const handleIncrement = () => {
-    console.log('amount: ', amount + 1)
-
     dispatch(addToCart(props));
-    console.log(props)
     setAmount(amount + 1);
   }
 
@@ -32,8 +27,6 @@ const Card = (props: IProduct) => {
       setAmount(amount - 1);
     } 
   }
-
-
 
 
   return (
@@ -61,7 +54,6 @@ const Card = (props: IProduct) => {
           <div className={s.price}>цена: {price}₽</div>
           {
             amount === 0 
-            // ? <Button onclick={() => setAmount(1)}>купить</Button>
             ? <Button onclick={handleIncrement}>купить</Button>
             : <div className={s.counter}>
             <Button onclick={handleDecrement}>-</Button>
@@ -69,10 +61,6 @@ const Card = (props: IProduct) => {
             <Button onclick={handleIncrement}>+</Button>
             </div>
           }
-          
-
-          {/* button */}
-          {/* counter */}
         </footer>
       </div>
 

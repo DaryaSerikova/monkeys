@@ -1,12 +1,10 @@
 'use client';
-import React from 'react';
-import s from './cart.module.scss';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import React, { useState } from 'react';
+import { useAppSelector } from '@/lib/hooks';
 import { ICardItem } from '@/shared/types/ICartItem';
 import { InputMask } from '@react-input/mask';
-import { useState, useEffect } from 'react';
 import Button from '../button/button';
-import { cartSlice } from '@/lib/slices/cartSlice';
+import s from './cart.module.scss';
 
 
 type Props = {}
@@ -14,30 +12,9 @@ type Props = {}
 const Cart = (props: Props) => {
 
   const cart = useAppSelector((state) => state.cartReducer);
-  // const dispatch = useAppDispatch();
-  // const { addLSToCart } = cartSlice.actions;
-
-  console.log("cart: ", cart);
   const [phone, setPhone] = useState<string>('');
   const [error, setError] = useState<string>('');
 
-  // useEffect(() => {
-  //   const phoneLS = localStorage.getItem('phone');
-  //   if (phoneLS) setPhone(phoneLS);
-  //   const cartLS = JSON.parse(`${localStorage.getItem('cart')}`);
-  //   console.log('cartLS: ', cartLS);
-
-  //   console.log('-------');
-  //   console.log('cartLS(local storage)', JSON.parse(`${cartLS}`));
-  //   console.log('cart (redux)', cart?.items)
-  //   if(cart?.items?.length === 0 && cartLS?.length !== 0) {
-  //     dispatch(addLSToCart(cartLS))
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if(cart?.items?.[0] !== null) localStorage.setItem('cart', JSON.stringify(cart?.items))
-  // }, [cart]);
 
   const getItemsBackend = (arr: ICardItem[]) => arr?.map(
     (cartItem: ICardItem) => ({id: cartItem?.id, amount: cartItem?.amount}));
@@ -50,20 +27,18 @@ const Cart = (props: Props) => {
       cart: cartArray,
     }
     const result = JSON.stringify(resObj);
-    console.log(result)
     return result;
   }
 
   const checkPhone = (phoneNumber: string) => {
-    console.log("phone ", phone)
 
     if (phoneNumber.length !== 18) {
       if (phoneNumber === '') {
-        console.log('Введите номер телефона!')
+        // console.log('Введите номер телефона!')
         setError('Введите номер телефона!');
         return false;
       } else {
-        console.log('Номер введен не полностью!')
+        // console.log('Номер введен не полностью!')
         setError('Номер введен не полностью!')
         return false;
       }

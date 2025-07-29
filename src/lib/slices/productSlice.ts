@@ -1,24 +1,11 @@
 import { IProduct } from "@/shared/types/IProduct";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// type GeneralInfoProduct = {
-//   page: number,
-//   amount: number,
-//   total: number,
-//   items: IProduct[],
-// }
 
-// interface ProductState {
-//   products: GeneralInfoProduct | []; ///
-//   status: 'loading' | 'succeeded' | 'failed'  | ''
-//   // isLoading: boolean;
-//   error: string;
-// }
 
 interface ProductState {
   products: IProduct[]; ///
   status: 'loading' | 'succeeded' | 'failed'  | ''
-  // isLoading: boolean;
   error: string;
 }
 

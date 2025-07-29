@@ -2,9 +2,7 @@
 
 .card {
   background-color: colors.$white;
-
   padding: 9px 10px 8px 10px;
-
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -62,7 +60,6 @@
 
       .counter {
         display: grid;
-        // grid-column: 50px 1fr 50px;
         grid-template-columns: 50px 1fr 50px;
         gap: 6px;
 

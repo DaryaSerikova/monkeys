@@ -1,14 +1,28 @@
-## Стэк
-Next.js
-Typascript
-Redux-toolkit
-SCSS, css-modules
+# Имитация магазина: отзывы, карточки товаров и корзина
 
+## Стэк
+
+- Next.js
+- Typascript
+- Redux-toolkit
+- SCSS, css-modules
+- html-react-parser
+
+## Запуск
+```
+npm run dev
+```
+Запускает на http://localhost:3000
+
+## Описание
 - визуал по фигме [https://www.figma.com/file/XIYVl8ICFkdl3HJZcc8o8B/тестовое?type=design&node-id=0%3A1&mode=design&t=6xUI2e3VtlUzDocD-1](https://www.figma.com/file/XIYVl8ICFkdl3HJZcc8o8B/%D1%82%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5?type=design&node-id=0%3A1&mode=design&t=6xUI2e3VtlUzDocD-1)
 - адаптирован под мобильные устройства и планшеты
 - наполнение контентом отзывов из html обернутого в json (использовала html-react-parser)
+![Отзывы с наполнением html из json](https://github.com/DaryaSerikova/monkeys/raw/dev/public/picture2.jpg)
 наполнение контентом товары по апи
 - при нажатии на кнопку "купить", меняться на кнопки + и - (counter) и поле для ввода кол-ва товара, значение поля  1, кнопки меняют количество товара
+![Карточки товара и корзина с телефоном](https://github.com/DaryaSerikova/monkeys/raw/dev/public/picture1.jpg)
+
 - при изменении кол-ва какого-либо из товаров меняется информация в корзине (над полем с телефоном)
 - введенный номер телефона должны сохраняться при перезагрузки страницы
 - маска в поле для телефона

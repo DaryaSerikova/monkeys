@@ -15,7 +15,7 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<IProduct>) => {
+    addToCart: (state: CartState, action: PayloadAction<IProduct>) => {
       
       const existingItem = state.items.find(item => item.id === action.payload.id);
       if (existingItem) {
@@ -23,38 +23,23 @@ export const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, amount: 1 });
       }
-
-      console.log('state: ', JSON.parse(JSON.stringify(state.items?.[0])))
     },
-    addLSToCart: (state, action: PayloadAction<ICardItem[]> ) => {
+    addLSToCart: (state: CartState, action: PayloadAction<ICardItem[]> ) => {
       state.items.push(action.payload);
     },
-    removeFromCart: (state, action: PayloadAction<IProduct>) => {
+    removeFromCart: (state: CartState, action: PayloadAction<IProduct>) => {
 
-      state.items.map((item) => {
+      state.items.map((item: ICardItem) => {
         if(item.id === action.payload.id) {
           if(item.amount === 1) {
-            console.log('AMOUNT 1')
             state.items = state.items.filter(item => item.id !== action.payload.id);
           } else {
-            console.log('AMOUNT > 1')
             item.amount -= 1
           }
         }
       })
-
-      console.log('state: ', JSON.parse(JSON.stringify(state.items?.[0])))
+      // console.log('state: ', JSON.parse(JSON.stringify(state.items?.[0])))
     },
-    // updateQuantity: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
-    //   const item = state.items.find(item => item.id === action.payload.id);
-    //   if (item) {
-    //     item.quantity = action.payload.quantity;
-    //   }
-    // },
-    // clearCart: (state) => {
-    //   state.items = [];
-    // },
-
   }
 })
 
